@@ -30,7 +30,6 @@ android {
                     'proguard-rules.txt'
         }
     }
-}
 
 dependencies {
     compile 'org.apache.commons:commons-lang3:3.4'
@@ -42,9 +41,24 @@ dependencies {
     compile 'com.android.support:appcompat-v7:22.2.0'
     compile 'org.jetbrains:annotations:13.0'
     compile 'com.google.code.gson:gson:2.3.1'
-    compile 'com.google.android.gms:play-services-appindexing:7.5.0'
     compile 'com.github.fengdai:alertdialogpro-theme-material:0.2.3'
     compile 'com.jpardogo.materialtabstrip:library:1.1.0'
     compile 'com.code-troopers.betterpickers:library:2.0.0'
     compile 'com.github.machinarius:preferencefragment:0.1.2'
 }
+    
+productFlavors {
+        standard {
+            applicationId 'com.gelakinetic.mtgfam.standard'
+        }
+        foss {
+            applicationId 'com.gelakinetic.mtgfam.foss'
+        }
+    }
+
+    dependencies {
+    	standardCompile 'com.google.android.gms:play-services-appindexing:7.5.0'
+    }
+
+}
+
