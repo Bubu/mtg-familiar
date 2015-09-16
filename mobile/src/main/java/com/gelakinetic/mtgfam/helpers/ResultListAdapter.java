@@ -155,8 +155,8 @@ public class ResultListAdapter extends SimpleCursorAdapter implements SectionInd
                     }
                     break;
                 }
-                case CardDbAdapter.KEY_TYPE: {
-                    String name = cursor.getString(cursor.getColumnIndex(mFrom[i]));
+                case CardDbAdapter.KEY_SUPERTYPE: {
+                    String name = CardDbAdapter.getTypeLine(cursor);
                     hideType = false;
                     textField.setText(name);
                     break;
@@ -266,7 +266,7 @@ public class ResultListAdapter extends SimpleCursorAdapter implements SectionInd
     public int getPositionForSection(int section) {
         try {
             return mAlphaIndexer.getPositionForSection(section); /* use the indexer */
-        } catch(IllegalStateException e) {
+        } catch (IllegalStateException e) {
             return 0;
         }
     }

@@ -93,18 +93,18 @@ public class PriceFetchRequest extends SpiceRequest<PriceInfo> {
         while (retry > 0) {
             try {
                 /* If the card number wasn't given, figure it out */
-                if (mCardNumber == null || mCardType == null || mMultiverseID == -1) {
+                if (mCardNumber == null || mCardNumber.equals("") || mCardType == null || mCardType.equals("") || mMultiverseID == -1) {
                     Cursor c = CardDbAdapter.fetchCardByNameAndSet(mCardName, mSetCode, CardDbAdapter.allData, database);
 
-                    if (mCardNumber == null) {
+                    if (mCardNumber == null || mCardNumber.equals("")) {
                         mCardNumber = c.getString(c.getColumnIndex(CardDbAdapter.KEY_NUMBER));
                     }
 
-                    if (mCardType == null) {
-                        mCardType = c.getString(c.getColumnIndex(CardDbAdapter.KEY_TYPE));
+                    if (mCardType == null || mCardType.equals("")) {
+                        mCardType = CardDbAdapter.getTypeLine(c);
                     }
 
-                    if(mMultiverseID == -1) {
+                    if (mMultiverseID == -1) {
                         mMultiverseID = CardDbAdapter.getSplitMultiverseID(mCardName, mSetCode, database);
                         if (mMultiverseID == -1) {
                             c.close();
@@ -144,8 +144,7 @@ public class PriceFetchRequest extends SpiceRequest<PriceInfo> {
                             tcgCardName = mCardName;
                             break;
                     }
-                }
-                else {
+                } else {
                     /* This isn't a multicard */
                     tcgCardName = mCardName;
                 }

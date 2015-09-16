@@ -268,6 +268,7 @@ Media licenced under the &lt;a href="http://creativecommons.org/licenses/by-sa/3
     <string name="trader_Average">Average</string>
     <string name="trader_High">High</string>
     <string name="trader_pricing_dialog_title">Price Options</string>
+    <string name="trader_sort">Sort Trade</string>
 
     <!-- Wishlist activity -->
     <string name="wishlist_name">Name</string>
@@ -421,6 +422,7 @@ Media licenced under the &lt;a href="http://creativecommons.org/licenses/by-sa/3
     <string name="pref_German">German</string>
     <string name="pref_Polish">Polish</string>
     <string name="pref_Portuguese">Portuguese</string>
+    <string name="pref_Chinese">Chinese</string>
     <string name="pref_1_day">1 day</string>
     <string name="pref_2_days">2 days</string>
     <string name="pref_3_days">3 days</string>
