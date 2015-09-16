@@ -52,7 +52,7 @@ productFlavors {
     //        applicationId 'com.gelakinetic.mtgfam.standard'
         }
         foss {
-    //        applicationId 'com.gelakinetic.mtgfam.foss'
+              applicationId 'com.gelakinetic.mtgfam.foss'
         }
     }
 
