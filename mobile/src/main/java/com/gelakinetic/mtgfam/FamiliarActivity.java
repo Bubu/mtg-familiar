@@ -96,6 +96,7 @@ import com.gelakinetic.mtgfam.helpers.database.DatabaseManager;
 import com.gelakinetic.mtgfam.helpers.database.FamiliarDbException;
 import com.gelakinetic.mtgfam.helpers.lruCache.ImageCache;
 import com.gelakinetic.mtgfam.helpers.updaters.DbUpdaterService;
+import com.gelakinetic.mtgfam.helpers.AppIndexingWrapper;
 import com.octo.android.robospice.SpiceManager;
 
 import org.jetbrains.annotations.NotNull;
@@ -230,6 +231,8 @@ public class FamiliarActivity extends AppCompatActivity {
     };
     private DrawerEntryArrayAdapter mPagesAdapter;
 
+    public AppIndexingWrapper mAppIndexingWrapper;
+
     /**
      * Start the Spice Manager when the activity starts
      */
@@ -252,6 +255,7 @@ public class FamiliarActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        mAppIndexingWrapper.disconnectIfConnected(); 	
         mPreferenceAdapter.unregisterOnSharedPreferenceChangeListener(mPreferenceChangeListener);
     }
 
@@ -593,6 +597,9 @@ public class FamiliarActivity extends AppCompatActivity {
         cacheParams.diskCacheSize = 1024 * 1024 * mPreferenceAdapter.getImageCacheSize();
         addImageCache(getSupportFragmentManager(), cacheParams);
 
+        /* Set up app indexing */
+	mAppIndexingWrapper = new AppIndexingWrapper(this);
+        mAppIndexingWrapper.connectIfDisconnected();
     }
 
     private boolean processIntent(Intent intent) {
